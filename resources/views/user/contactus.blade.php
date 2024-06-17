@@ -15,7 +15,7 @@
             <div class="col-12">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#"><i class="fa fa-home"></i> Home</a></li>
+                        <li class="breadcrumb-item"><a href="{{route('user.dashboard')}}"><i class="fa fa-home"></i> Home</a></li>
                         <li class="breadcrumb-item active" aria-current="page">Contact Us</li>
                     </ol>
                 </nav>
@@ -27,13 +27,13 @@
     <div class="container-fluid">
         <div class="row px-xl-5 ">
             <div class="col-lg-8 table-responsive mb-5 mx-auto">
-                <div class="card">
+                <div class="card border-0">
                     <div class="card-header">
                         <div class="card-title">
                             <h1>Contact Us</h1>
                         </div>
                     </div>
-                    <div class="card-body">
+                    <div class="card-body ">
                         <div class="container-fluid">
                             <div class="row px-xl-5">
                                 <div class="col-lg-6 mb-5 offset-3">

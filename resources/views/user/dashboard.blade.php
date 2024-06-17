@@ -21,7 +21,6 @@
                         <!-- Post Content -->
                         <div class="hero-slides-content text-center">
                             <h2>Plants exist in the weather and light rays that surround them</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur pellentesque ante nec ipsum iaculis, ac iaculis ipsum porttitor. Vivamus cursus nisl lectus, id mattis nisl lobortis eu. Duis diam augue, dapibus ut dolor at, mattis maximus dolor.</p>
                         </div>
                     </div>
                 </div>
@@ -38,7 +37,6 @@
                         <!-- Post Content -->
                         <div class="hero-slides-content text-center">
                             <h2>Plants exist in the weather and light rays that surround them</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur pellentesque ante nec ipsum iaculis, ac iaculis ipsum porttitor. Vivamus cursus nisl lectus, id mattis nisl lobortis eu. Duis diam augue, dapibus ut dolor at, mattis maximus dolor.</p>
                         </div>
                     </div>
                 </div>
@@ -58,13 +56,13 @@
                     <div class="shop-widget catagory mb-50">
                         <h4 class="widget-title">Categories</h4>
                         <div class="widget-desc">
-                            <ul class="custom-control custom-checkbox d-flex align-items-center mb-2 cat" >
-                                <li  class="custom-control-label" >All Plant</li>
+                            <ul style="cursor: pointer;" class="custom-control custom-checkbox d-flex align-items-center mb-2 cat" >
+                                <li  class="" >All Plant</li>
                             </ul>
 
                             @foreach ($category as $c)
-                                    <ul class="custom-control custom-checkbox d-flex align-items-center mb-2 cat" data-category="{{ $c->id }}">
-                                        <li  class="custom-control-label" >{{ $c->name }}</li>
+                                    <ul style="cursor: pointer;" class="custom-control custom-checkbox d-flex align-items-center mb-2 cat" data-category="{{ $c->id }}">
+                                        <li  style="cursor: pointer;" class="" >{{ $c->name }}</li>
                                     </ul>
                             @endforeach
                         </div>

@@ -14,7 +14,7 @@
             <div class="col-12">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#"><i class="fa fa-home"></i> Home</a></li>
+                        <li class="breadcrumb-item"><a href="{{route('user.dashboard')}}"><i class="fa fa-home"></i> Home</a></li>
                         <li class="breadcrumb-item active" aria-current="page">About Us</li>
                     </ol>
                 </nav>
@@ -43,7 +43,7 @@
                                                 Visit us to explore our diverse plant collection, unique planters, and accessories. Let Green Haven help you create a vibrant, healthy, and beautiful environment. Come grow with us!</p>
                                             <div class="my-5">
                                                 <a href="" class="btn btn-dark text-white">Our Blog</a>
-                                                <a href="" class="btn btn-warning ml-3">Contant us</a>
+                                                <a href="{{route('user.contactpage')}}" class="btn btn-warning ml-3">Contant us</a>
                                             </div>
                                         </div>
                                     </div>

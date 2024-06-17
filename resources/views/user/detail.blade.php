@@ -15,7 +15,7 @@
                 <div class="col-12">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item rounded  " style="background-color:#70c745;"><a href="{{route('user.dashboard')}}" class="text-white p-3"><i class="fa fa-home  text-white p-1"></i> Home</a></li>
+                            <li class="breadcrumb-item   "><a href="{{route('user.dashboard')}}" class=""><i class="fa fa-home "></i> Home</a></li>
                             <li class="breadcrumb-item">Shop</li>
                             <li class="breadcrumb-item active" aria-current="page">Shop Details</li>
                         </ol>
@@ -57,14 +57,14 @@
                             <div class="cart--area d-flex flex-wrap align-items-center">
                                 <!-- Add to Cart Form -->
                                 <div class="cart clearfix d-flex align-items-center" method="post">
-                                    <div class="input-group quantity mr-3" style="width: 130px;">
+                                    <div class="input-group quantity mr-3 d-flex">
                                         <div class="input-group-btn">
                                             <button class="btn btn-primary btn-minus" data-id="{{ $post->id }}">
                                                 <i class="fa fa-minus"></i>
                                             </button>
                                         </div>
                                         <input type="number" min="1"
-                                            class="form-control bg-secondary border-0 text-center " value="1"
+                                            class="form-control text-white bg-secondary border-0 text-center " value="1"
                                             id="qty-{{ $post->id }}">
                                         <div class="input-group-btn">
                                             <button class="btn btn-primary btn-plus" data-id="{{ $post->id }}">

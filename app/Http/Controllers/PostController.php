@@ -17,7 +17,6 @@ class PostController extends Controller
      */
     public function index()
     {
-
         $posts = Post::with('category')
         ->when(request('search'), function ($query, $searchTerm) {
             $query->where(function ($query) use ($searchTerm) {

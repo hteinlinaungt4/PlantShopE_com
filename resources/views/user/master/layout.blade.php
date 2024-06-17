@@ -29,7 +29,7 @@
     <!-- Custom styles for this template-->
     <link rel="stylesheet" href="{{ asset('admin/css/sb-admin-2.min.css')}}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="{{asset('user/style.css')}}">
 
 
 </head>
@@ -65,7 +65,7 @@
                                      @else
                                         <div class="language-dropdown">
                                             <div class="dropdown">
-                                                <button class="btn btn-secondary fs-5 dropdown-toggle mr-30" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Profile</button>
+                                                <button class="btn btn-secondary fs-5 dropdown-toggle mr-30" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{Auth::user()->name}}</button>
                                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                                     <a class="dropdown-item" href="{{route('user.profiledetail')}}">Detail Account</a>
                                                 </div>
