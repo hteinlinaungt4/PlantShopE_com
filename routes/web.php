@@ -46,10 +46,13 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified',])
        Route::resource('post',PostController::class);
 
        Route::get('list',[OrderController::class,'orderlist'])->name('order#listpage');
+
+       Route::get('stock',[PostController::class,'stock'])->name('stock');
+
        Route::get('orderdetail/{code}',[OrderController::class,'orderdetail'])->name('order#detail');
 
        Route::get('contact',[AdminController::class,'contact'])->name('admin#contact');
-
+       Route::get('payment',[AdminController::class,'payment'])->name('admin#payment');
 
        Route::prefix('ajax')->group(function(){
              Route::get('statusupdate',[AjaxController::class,'statusupdate'])->name('Ajax#statusupdate');
@@ -58,14 +61,6 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified',])
 
 
        Route::prefix('admin')->group(function(){
-        // // Password
-        // Route::get('changepasswordpage',[AdminController::class,'changepasswordpage'])->name('admin#changepasswordpage');
-        // Route::post('changepassword',[AdminController::class,'changepassword'])->name('admin#changepassword');
-
-        // // Account detail
-        // Route::get('account',[AdminController::class,'accountpage'])->name('account#page');
-        // Route::get('accountedit',[AdminController::class,'accountedit'])->name('account#edit');
-        // Route::post('accountupdate',[AdminController::class,'accountupdate'])->name('account#update');
 
         // user account
         Route::get('adminlist',[AdminController::class,'adminlist'])->name('admin#adminlist');
@@ -100,9 +95,12 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified',])
             Route::get('product',[AjaxController::class,'productdata'])->name('Ajax#product');
             Route::post('cart',[AjaxController::class,'cart'])->name('Ajax#cart');
             Route::post('order',[AjaxController::class,'order'])->name('Ajax#order');
+            Route::post('bill',[AjaxController::class,'bill'])->name('Ajax#bill');
             Route::post('removecart',[AjaxController::class,'removecart'])->name('Ajax#removecart');
         });
     });
+
+
         Route::get('user/dashboard',[UserController::class,'index'])->name('user.dashboard');
         Route::get('user/contactpage',[ContactController::class,'index'])->name('user.contactpage');
         Route::post('contactcreate',[ContactController::class,'contactcreate'])->name('user.contactcreate');

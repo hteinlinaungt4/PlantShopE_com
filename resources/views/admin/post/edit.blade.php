@@ -40,6 +40,22 @@
                 @enderror
             </div>
             <div class="form-group">
+                <label for="">Price</label>
+                <input type="number" value="{{$post->price}}"  class="form-control @error('price') is-invalid @enderror" name="price" placeholder="Enter Price ...">
+                @error ('price')
+                    <div class="invalid-feedback">{{$message}}</div>
+                @enderror
+            </div>
+
+            <div class="form-group">
+                <label for="">Qty</label>
+                <input type="number" value="{{$post->qty}}" class="form-control @error('qty') is-invalid @enderror" name="qty" placeholder="Enter Product Qty ...">
+                @error ('qty')
+                    <div class="invalid-feedback">{{$message}}</div>
+                @enderror
+            </div>
+
+            <div class="form-group">
                 <label for="">Content</label>
                 <textarea name="content" id="" class="form-control  @error('content') is-invalid @enderror" rows="10" placeholder="Enter Content...">{{$post->content}}</textarea>
                 @error ('content')

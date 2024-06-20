@@ -90,6 +90,20 @@
                  </a>
             </li>
 
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('stock') }}">
+                    <i class="fa fa-exchange"></i>
+                    <span>Stocks</span>
+                 </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('admin#payment')}}">
+                    <i class="fa fa-map"></i>
+                    <span>Payments Address</span>
+                 </a>
+            </li>
+
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 

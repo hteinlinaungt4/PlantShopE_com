@@ -49,6 +49,7 @@ class PostController extends Controller
             'title' => 'required|unique:posts,title',
             'content' => 'required',
             'price' => 'required',
+            'qty' => 'required',
             'care_description' => 'required',
         ];
         if($request->hasFile('image')){
@@ -66,6 +67,7 @@ class PostController extends Controller
         $post->content = $request->content;
         $post->category_id = $request->category;
         $post->price = $request->price;
+        $post->qty = $request->qty;
         $post->care_description = $request->care_description;
         $post->image = $filename;
         $post->save();
@@ -99,6 +101,8 @@ class PostController extends Controller
             'title' => 'required|unique:posts,title,'.$request->id,
             'content' => 'required',
             'category' => 'required',
+            'price' => 'required',
+            'qty'=> 'required',
             'care_description' => 'required'
         ];
 
@@ -118,6 +122,8 @@ class PostController extends Controller
         }
 
         $post->title = $request->title;
+        $post->qty = $request->qty;
+        $post->price = $request->price;
         $post->content = $request->content;
         $post->care_description = $request->care_description;
         $post->category_id = $request->category;
@@ -139,6 +145,19 @@ class PostController extends Controller
         return redirect()->route('post.index')->with(['success'=>'You are Deleted Successfully!']);
     }
 
+    public function stock(){
+        $posts = Post::with('category')
+        ->when(request('search'), function ($query, $searchTerm) {
+            $query->where(function ($query) use ($searchTerm) {
+                $query->where('title', 'like', '%' . $searchTerm . '%')
+                        ->orWhere('content', 'like', '%' . $searchTerm . '%')
+                        ->orWhereHas('category', function ($query) use ($searchTerm) {
+                          $query->where('name', 'like', '%' . $searchTerm . '%');
+                      });
+            });
+        })->get();
+        return view('admin.stock.list',compact('posts'));
+    }
 
 
 }

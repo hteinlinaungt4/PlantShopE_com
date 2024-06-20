@@ -67,7 +67,7 @@
                                             class="form-control text-white bg-secondary border-0 text-center " value="1"
                                             id="qty-{{ $post->id }}">
                                         <div class="input-group-btn">
-                                            <button class="btn btn-primary btn-plus" data-id="{{ $post->id }}">
+                                            <button class="btn btn-primary btn-plus" data-max="{{$post->qty}}" data-id="{{ $post->id }}">
                                                 <i class="fa fa-plus"></i>
                                             </button>
                                         </div>
@@ -186,9 +186,15 @@
         $(document).ready(function() {
             $('.btn-plus').click(function() {
                 let id = $(this).data('id');
+                let max = $(this).data('max');
                 let qty = parseInt($('#qty-' + id).val());
                 let price = parseFloat($('#price-' + id).val());
-                qty++;
+                if(qty >= max){
+                    qty;
+                }else{
+                    qty++;
+                }
+
                 let total = price * qty;
                 $('#qty-' + id).val(qty);
                 $('#total').html(`${total} Kyats`);

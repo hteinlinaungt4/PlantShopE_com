@@ -15,7 +15,7 @@ class UserController extends Controller
 {
     //
     public function index(Request $request){
-        $posts = Post::orderby('created_at','desc')->get();
+        $posts = Post::orderby('created_at','desc')->where('qty', '>=', 1)->get();
         $category = Category::all();
         return view('user.dashboard',compact('posts','category'));
     }
@@ -40,8 +40,12 @@ class UserController extends Controller
 
     function detail($id){
         $post=Post::with('category')->where('id',$id)->first();
-        $posts=Post::paginate(3);
+        $posts=Post::paginate(3)->where('qty', '>', 1) ;
         return view('user.detail',compact('post','posts'));
+    }
+
+    function bill(){
+        return view('user.bill');
     }
 
 

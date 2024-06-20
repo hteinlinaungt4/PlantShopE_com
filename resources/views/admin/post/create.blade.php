@@ -50,6 +50,13 @@
                 @enderror
             </div>
             <div class="form-group">
+                <label for="">Qty</label>
+                <input type="number" class="form-control @error('qty') is-invalid @enderror" name="qty" placeholder="Enter Product Qty ...">
+                @error ('qty')
+                    <div class="invalid-feedback">{{$message}}</div>
+                @enderror
+            </div>
+            <div class="form-group">
                 <label for="">Content</label>
                 <textarea name="content" id="" class="form-control  @error('content') is-invalid @enderror" rows="10" placeholder="Enter Content..."></textarea>
                 @error ('content')

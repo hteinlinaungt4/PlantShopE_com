@@ -154,8 +154,8 @@
     <!-- Cart Start -->
     <div class="container-fluid">
         <div class="row px-xl-5 ">
-            <div class="col-lg-8 table-responsive mb-5 mx-auto">
-                <table class="table table-light table-borderless table-hover text-center mb-0">
+            <div class="col-lg-8 table-responsive mb-5 mx-auto p-5">
+                <table class="table  table-light table-borderless table-hover text-center mb-0">
                     <thead class="thead-dark">
                         <tr>
                             <th>Products</th>
@@ -168,6 +168,7 @@
                     <tbody class="align-middle">
                         @foreach ($cart as $c)
                         <tr>
+
                             <input type="hidden" value="{{ Auth::user()->id }}" id="userid-{{ $c->id }}">
                             <input type="hidden" value="{{ $c->post_id }}" id="postid-{{ $c->id }}">
                             <input type="hidden" id="price-{{ $c->id }}" value="{{ $c->post->price }}">
@@ -186,7 +187,7 @@
                                     </div>
                                     <input type="text" id="qty-{{ $c->id }}" class="form-control form-control-sm bg-secondary border-0 text-center" value="{{ $c->qty }}" readonly>
                                     <div class="input-group-btn">
-                                        <button class="btn btn-sm btn-primary btn-plus" data-id="{{ $c->id }}">
+                                        <button class="btn btn-sm btn-primary btn-plus"  data-max="{{$c->post->qty}}" data-id="{{ $c->id }}">
                                             <i class="fa fa-plus"></i>
                                         </button>
                                     </div>
@@ -203,8 +204,56 @@
                     </tbody>
                 </table>
                 <hr>
-                <button class="btn btn-success order">Order</button>
                 <h3 class="float-right" id="summary">Total {{ $totalprice }} Kyats</h3>
+            </div>
+            <div class="col-lg-4 p-5">
+               <div class="card">
+                <div class="card-header">
+                    <div class="card-title">
+                        Payment Info
+                    </div>
+                </div>
+                <div class="card-body">
+                    <form action="">
+                        <div class="form-group">
+                            <label for="">Name</label>
+                            <input type="text" id="username" value="{{ Auth::user()->name }}"  class="form-control @error('name') is-invalid @enderror" name="name" placeholder="Enter Name ...">
+                            @error ('name')
+                                <div class="invalid-feedback">{{$message}}</div>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="">Email</label>
+                            <input type="email" value="{{ Auth::user()->email }}" id="email" class="form-control @error('email') is-invalid @enderror" name="name" placeholder="Enter Email ...">
+                            @error ('email')
+                                <div class="invalid-feedback">{{$message}}</div>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="">Phone</label>
+                            <input type="number" value="{{Auth::user()->phone}}" id="phone" class="form-control @error('phone') is-invalid @enderror" name="phone" placeholder="Enter Phone ...">
+                            @error ('phone')
+                                <div class="invalid-feedback">{{$message}}</div>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="">Address</label>
+                            <textarea name="address" id="address" class="form-control  @error('address') is-invalid @enderror" rows="3" placeholder="Enter Address...">{{Auth::user()->address}}</textarea>
+                            @error ('address')
+                                <div class="invalid-feedback">{{$message}}</div>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="">Payment</label>
+                            <input type="text" value="Cash on Deli" id="payment" disabled class="form-control " name="payment" >
+                            @error ('payment')
+                                <div class="invalid-feedback">{{$message}}</div>
+                            @enderror
+                        </div>
+                        <button class="btn btn-success order">Order</button>
+                    </form>
+                </div>
+               </div>
             </div>
         </div>
     </div>
@@ -217,8 +266,13 @@
             $('.btn-plus').click(function(){
                 let id = $(this).data('id');
                 let qty = parseInt($('#qty-' + id).val());
+                let max = $(this).data('max');
                 let price = parseFloat($('#price-' + id).val());
-                qty++;
+                if(qty >= max){
+                    qty;
+                }else{
+                    qty++;
+                }
                 let total = price * qty;
                 $('#qty-' + id).val(qty);
                 $('#total-' + id).html(`${total} Kyats`);
@@ -258,9 +312,25 @@
             })
 
 
-            $('.order').click(function(){
-                let data = [];
+            $('.order').click(function(e){
+                e.preventDefault();
                 let random = Math.floor(Math.random() * 1000000) + 1;
+
+                $username=$('#username').val();
+                $email=$('#email').val();
+                $phone=$('#phone').val();
+                $address=$('#address').val();
+                $payment=$('#payment').val();
+                let paymentData = {
+                    'ordercode' : 'Plant' + random,
+                    'name' : $username,
+                    'phone_number' : $phone,
+                    'email' : $email,
+                    'address' : $address,
+                    'payment_method' : $payment
+                };
+
+                let data = [];
                 $('.table tbody tr').each(function(index, row){
                     data.push({
                         'user_id': $(row).find('input[id^="userid"]').val(),
@@ -270,8 +340,20 @@
                         'ordercode': 'Plant' + random,
                     });
                 });
+                $.ajax({
+                    type : 'get',
+                    method: 'post',
+                    data : paymentData,
+                    url : '/ajax/bill',
+                    datatype: 'json',
+                    success : function(response){
+                        if(response.message == 'success'){
+                            window.location.href="user/dashboard";
+                        }
+                    }
+                    })
 
-                   $.ajax({
+                    $.ajax({
                     type : 'get',
                     method: 'post',
                     data : Object.assign({},data),
@@ -282,7 +364,7 @@
                             window.location.href="user/dashboard";
                         }
                     }
-                   })
+                    })
             });
 
             function updateSummary(){

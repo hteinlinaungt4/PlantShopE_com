@@ -1,7 +1,5 @@
 @extends('admin.dashboard')
 @section('title',"Post")
-@section('count')
-@endsection
 @section('content')
    <div class="card">
     <div class="card-header d-flex justify-content-between align-items-center">
@@ -30,6 +28,8 @@
                     <th>Image</th>
                     <th>Category</th>
                     <th>Title</th>
+                    <th>Price</th>
+                    <th>Qty</th>
                     <th>Content</th>
                     <th>Care Description</th>
                     <th>Action</th>
@@ -45,6 +45,8 @@
                     </td>
                     <td>{{ $post->category->name }}</td>
                     <td>{{ $post->title }}</td>
+                    <td>{{ $post->price }}</td>
+                    <td>{{ $post->qty }}</td>
                     <td>{{ $post->content }}</td>
                     <td>{{ $post->care_description }}</td>
                     <td class="d-flex">

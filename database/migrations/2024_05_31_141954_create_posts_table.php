@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->longText('content');
+            $table->integer('qty');
             $table->unsignedBigInteger('price');
             $table->longText('care_description');
             $table->foreignId('category_id')->constrained('categories')->onDelete('cascade');

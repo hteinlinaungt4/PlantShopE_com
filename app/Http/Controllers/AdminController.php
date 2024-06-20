@@ -9,6 +9,7 @@ use App\Models\Contact;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\payment;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
@@ -110,7 +111,10 @@ function contact(){
     $contacts=Contact::get();
     return view('admin.contact.contact',compact('contacts'));
 }
-
+function payment(){
+    $payments=payment::with('order')->get();
+   return view('admin.payment.list',compact('payments'));
+}
 
 // validate
 private function ValidationCheck($request){

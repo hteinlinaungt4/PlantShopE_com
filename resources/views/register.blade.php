@@ -42,6 +42,14 @@
                         @enderror
 					</div>
 
+                    <div class="wrap-input100 validate-input" data-validate = "Enter Phone">
+						<input type="text" class="input100  @error('phone') is-invalid @enderror"  name="phone" placeholder="Phone">
+						<span class="focus-input100" data-placeholder="&#xe822;"></span>
+                        @error ('phone')
+                            <div class="invalid-feedback">{{$message}}</div>
+                        @enderror
+					</div>
+
 
                     <div class="wrap-input100 validate-input" data-validate = "Enter Password">
 						<input type="password" class="input100  @error('password') is-invalid @enderror" type="password" name="password" placeholder="Password">
