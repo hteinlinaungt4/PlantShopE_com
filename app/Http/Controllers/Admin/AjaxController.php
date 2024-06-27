@@ -180,9 +180,9 @@ class AjaxController extends Controller
        // cat filter
        public function filter(Request $request){
         if(!$request->id){
-            $posts = Post::orderby('created_at','desc')->get();
+            $posts = Post::orderby('created_at','desc')->where('qty', '>=', 1)->get();
         }else{
-            $posts = Post::where('category_id',$request->id)->orderby('created_at','desc')->get();
+            $posts = Post::where('category_id',$request->id)->orderby('created_at','desc')->where('qty', '>=', 1)->get();
         }
         return response()->json($posts,200);
     }
