@@ -68,6 +68,7 @@ class AjaxController extends Controller
      }
 
      public function bill(Request $request){
+        Logger($request->all());
         $payment = new payment();
         $payment->orderCode = $request->ordercode;
         $payment->name = $request->name;

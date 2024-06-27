@@ -87,9 +87,6 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified',])
         Route::post('user/profile/update/{id}',[ProfileController::class,'userupdate'])->name('user.profile.update');
 
     });
-
-
-
     // ajax
         Route::prefix('ajax')->group(function(){
             Route::get('product',[AjaxController::class,'productdata'])->name('Ajax#product');

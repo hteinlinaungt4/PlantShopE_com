@@ -33,30 +33,6 @@ class AdminController extends Controller
         $order = Order::all()->count();
         return view('admin.total',compact('user','post','category','order'));
     }
-//  //changepassword page
-//  function changepasswordpage(){
-//     return view('admin.changepassword');
-// }
-
-
-// // changepassword
-// function changepassword(Request $request){
-//         $this->ValidationCheck($request);
-//         $id=Auth::user()->id;
-//         $oldpassword=User::select('password')->where('id',$id)->first();
-//         $oldpassword=$oldpassword->password;
-//         if(Hash::check($request->oldpassword,$oldpassword)){
-//             $data=[
-//                 'password' => Hash::make( $request->newpassword),
-//             ];
-//             User::where('id',$id)->update($data);
-//             Auth::logout();
-//             return redirect()->route('auth#loginPage');
-//         }else{
-//            return back()->with(['doesnot' => 'You are oldpassword does not match!']);
-//         }
-
-// }
 
 // admin Account list
 function adminlist(){
