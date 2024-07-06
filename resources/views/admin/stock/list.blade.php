@@ -24,14 +24,18 @@
                                         <th>Stock Remain</th>
                                     </tr>
                                 </thead>
-                                <tbody id="data">
+                                <tbody>
                                     @foreach ($posts as $o)
-                                        <tr class="tr-shadow   @if($o->qty < 1) bg-danger  text-white @else bg-success text-black @endif">
-                                            <td class="">{{ $o->title }}</td>
-                                            <td>
+                                        <tr class="tr-shadow">
+                                            <td class="" style="vertical-align: middle;">{{ $o->title }}</td>
+                                            <td style="vertical-align: middle;">
                                                 <img width="100px" height="80px" style="object-fit: cover"  src="{{ asset('storage/posts/'.$o->image)}}">
                                             </td>
-                                            <td>{{$o->qty}}</td>
+                                            @if ($o->qty < 1)
+                                            <td  style="vertical-align: middle;"><span class="badge rounded-pill bg-danger p-3 text-white">{{$o->qty}}</span></td>
+                                            @else
+                                            <td  style="vertical-align: middle;"><span class="badge rounded-pill bg-success p-3 text-white">{{$o->qty}}</span></td>
+                                            @endif
                                         </tr>
                                     @endforeach
                                 </tbody>
